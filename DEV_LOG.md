@@ -61,20 +61,3 @@
         [] can add
         [] can edit
         [] can delete
-
-
-
-[x] BREAK DOWN THE FOLLOWING STEPS IN THIS LOG:
-
-    [x] Links for navigating to (a) a registration page, (b) a login page, and for (c) signing out. This could be via a navbar in the layout---if it works similar to Rails.
-    [x] Creating a registration page with a form with all required fields.
-    [x] The email & URL should be validated for the correct format (what is the format?).
-    [x] Creating a login page with a form to log in with... what exactly? (e.g. email, first name? password?).
-    [x] Creating a User landing page that displays a welcome message, the user's first & last names.
-    [x] Logging out should require something like a confirmation pop up when attempting to log out.
-    [x] Users should see a confirmation upon logging out (like a flash message or alert) once the redirect view (i.e. logout confirmation page) loads.
-    [x] The new view should display a logout confirmation message & a login link.
-    [x] Unless Django handles things differently, I'll need at least a user model.
-    [x] Since I'm persisting data, I'll need a migration for the User model with the indicated attributes (I will need to look into how Django deals with making them required &  validating their presence/format on the backend).
-    [x] An admin-type super-user who is able to add, edit, and delete all users via a UI arranged in a way I see fit.  I will see how Django handles this. but it seems like I can provide an attribute to designate a User as an admin/super user.
-    [x] A way to handle session creation (upon logging in) & termination (upon logging out)
