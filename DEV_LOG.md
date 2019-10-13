@@ -2,6 +2,7 @@
 
 ## Backend
 
+```
 [] Create a User model                 ---- (if not an internal component of Django)
 [] Create routes                       ---- see how these work compared to controllers
 [] Create a view (multiple views?)     ---- figure out how these work compared to controllers
@@ -16,11 +17,13 @@
 
 [] Create migrations                   ---- figure out how these work in Django
 [] Set up an 'Admin'-'Super-User' who can add, edit, & delete other users via a webpage
+```
 
 
 
 ## Frontend
 
+```
 [] Create a layout-template that accepts partials/other html templates via something like yield
 [] Create a navbar inside this template with the following stubs:
         [] (a) Register        ---- display conditionally
