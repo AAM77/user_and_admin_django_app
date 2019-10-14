@@ -3,7 +3,9 @@
 ## Backend
 
 ```
-[] Create a User model                 ---- (if not an internal component of Django)
+[] Create a users app
+[] add users to INSTALLED_APPS
+[] Create a Custom User model
 [] Create routes                       ---- see how these work compared to controllers
 [] Create a view (multiple views?)     ---- figure out how these work compared to controllers
     []  SESSION
@@ -24,13 +26,13 @@
 ## Frontend
 
 ```
-[] Create a layout-template that accepts partials/other html templates via something like yield
+[x] Create a layout-template that accepts partials/other html templates via something like yield
 [] Create a navbar inside this template with the following stubs:
         [] (a) Register        ---- display conditionally
         [] (b) Log In          ---- display conditionally
         [] (c) Sign Out        ---- display conditionally
 
-[] Create a universal landing page with a welcome message
+[] Create a universal landing page with a welcome message --- ((( is this even possible in Django? )))
 [] Create a registration page
         [] Create a Form
         [] Make all fields required
