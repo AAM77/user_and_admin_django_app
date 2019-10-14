@@ -60,7 +60,7 @@ class MyUser(AbstractBaseUser):
     url                     = models.CharField(max_length=255)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'url']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'url']
 
     objects = MyUserManager()
 
