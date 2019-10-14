@@ -68,6 +68,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = "users.MyUser"
+
 WSGI_APPLICATION = 'wick_challenge_project.wsgi.application'
 
 
