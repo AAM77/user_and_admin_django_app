@@ -1,0 +1,7 @@
+{% extends 'users/base.html' %}
+
+
+{% block content %}
+    <h1>Welcome, {{ request.user.first_name }}  {{ request.user.last_name }}!</h1>
+    <h3>You're logged in!</h3>
+{% endblock content %}
