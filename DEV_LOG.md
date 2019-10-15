@@ -3,11 +3,19 @@
 ## Backend
 
 ```
-[] Create a users app
-[] add users to INSTALLED_APPS
-[] Create a Custom User model
-[] Create routes                       ---- see how these work compared to controllers
-[] Create a view (multiple views?)     ---- figure out how these work compared to controllers
+[x] Create a users app
+[x] add users to INSTALLED_APPS
+[x] Create a Custom User model
+        [x] Make all fields required
+            [x] First name
+            [x] Last name
+            [x] Email
+                [] Validate Email format --- ( xxx@xxx.com )
+            [x] Password
+            [x] URL - personal website/portfolio
+                [] Validate URL format   --- ( http://xxx )
+[] Create routes                       
+[] Create a view (multiple views?)     
     []  SESSION
         [] Create
         [] Delete/Destroy
@@ -17,8 +25,9 @@
         [] Edit/   Update
         [] Delete/ Destroy
 
-[] Create migrations                   ---- figure out how these work in Django
-[] Set up an 'Admin'-'Super-User' who can add, edit, & delete other users via a webpage
+[x] Create Migrations                   
+[x] Migrate
+[x] Create a superuser who can add, edit, & delete other users via a webpage (will admins have the same capability?)
 ```
 
 
