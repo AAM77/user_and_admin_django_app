@@ -11,6 +11,8 @@
             [x] Last name
             [x] Email
                 [] Validate Email format --- ( xxx@xxx.com )
+                [x] Email should be unique
+                [] Email should be case insensitive
             [x] Password
             [x] URL - personal website/portfolio
                 [] Validate URL format   --- ( http://xxx )
