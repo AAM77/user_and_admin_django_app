@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from users.forms import RegistrationForm
 
 
@@ -26,3 +26,7 @@ def registration_view(request):
         context['registration_form'] = form
 
     return render(request, 'users/register.html', context)
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'users/logout.html')
