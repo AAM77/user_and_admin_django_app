@@ -3,24 +3,26 @@
 {% block content %}
     <h1>Register</h1>
 
-    <form method="POST">
+    <form method='POST'>
         {% csrf_token %}
-
         {% for field in registration_form %}
-            <p>
-                {{ field.label_tag }}
+            <div class="form-group">
+                <label>{{ field.label_tag }}</label>
+                <br />
                 {{ field }}
 
                 {% if field.help_text %}
-                    <small style="color: grey;">{{ field.help_text }}</small>
+                    <small id="emailHelp" class="form-text text-muted">{{ field.help_text }}</small>
                 {% endif %}
 
-                {% for error in field.errors %}
-                    <p style="color: red;">{{ error }}</p>
-                {% endfor %}
-            </p>
+                {% if login_form.non_field_errors %}
+                    <div style="color:red";>
+                        <p>{{login_form.non_field_errors}}</p>
+                    </div>
+                {% endif %}
+            </div>
         {% endfor %}
-        <button type="submit">Register</button>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
 
 {% endblock content %}
