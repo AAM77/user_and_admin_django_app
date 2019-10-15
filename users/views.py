@@ -33,10 +33,6 @@ def registration_view(request):
     return render(request, 'users/register.html', context)
 
 
-def logout_view(request):
-    logout(request)
-    return render(request, 'users/logout.html')
-
 
 # if the user is already authenticate, redirect to the user's home page ('home' for now)
 # otherwise, if there's a POST request, get the form data, and check if valid
@@ -67,3 +63,8 @@ def login_view(request):
 
     context['login_form'] = form
     return render(request, 'users/login.html', context)
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'users/logout.html')
