@@ -16,18 +16,27 @@
             [x] Password
             [x] URL - personal website/portfolio
                 [] Validate URL format   --- ( http://xxx )
-[] Create routes                       
-[] Create a view (multiple views?)     
-    []  SESSION
-        [] Create
-        [] Delete/Destroy
+[] Create routes
+    [x] home
+    [x] registration page
+    [x] logout
+
+[] Create views
+    [x] home
+    [x] register
+    [] login
+    [x] logout
+
+    [x]  SESSION
+        [x] Create - login
+        [x] Delete/Destroy - logout
 
     [] USER
-        [] New/    Create
+        [x] New/    Create
         [] Edit/   Update
         [] Delete/ Destroy
 
-[x] Create Migrations                   
+[x] Create Migrations
 [x] Migrate
 [x] Create a superuser who can add, edit, & delete other users via a webpage (will admins have the same capability?)
 ```
@@ -45,14 +54,14 @@
 
 [] Create a universal landing page with a welcome message --- ((( is this even possible in Django? )))
 [] Create a registration page
-        [] Create a Form
-        [] Make all fields required
-            [] First name
-            [] Last name
-            [] Email
+        [x] Create a Form
+        [x] Make all fields required
+            [x] First name
+            [x] Last name
+            [x] Email
                 [] Validate Email format --- ( xxx@xxx.com )
-            [] Password
-            [] URL - personal website/portfolio
+            [x] Password
+            [x] URL - personal website/portfolio
                 [] Validate URL format   --- ( http://xxx )
 
 [] Create a Log In Page
@@ -67,13 +76,13 @@
             [] Include first name
             [] Include last name
 
-[] LOG OUT should trigger confirmation pop up
-[] Create a confirmation page that logging out redirects to (a page users see when they successfully log out)
-        [] Display a confirmation message
+[] LOG OUT should trigger confirmation pop up --- OPTIONAL
+[x] Create a confirmation page that logging out redirects to (a page users see when they successfully log out)
+        [x] Display a confirmation message
         [] Provide an additional link to log in
 
 [] Create a page/UI for an admin-type super-user
-    [] Manage Users
-        [] can add
-        [] can edit
-        [] can delete
+    [x] Manage Users
+        [x] can add
+        [x] can edit
+        [x] can delete
