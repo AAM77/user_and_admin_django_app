@@ -48,16 +48,17 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser):
+    first_name              = models.CharField(max_length=150)
+    last_name               = models.CharField(max_length=150)
     email                   = models.EmailField(verbose_name='email', max_length=255, unique=True)
+    url                     = models.CharField(max_length=255)
     date_joined             = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login              = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_active               = models.BooleanField(default=True)
     is_admin                = models.BooleanField(default=False)
     is_staff                = models.BooleanField(default=False)
     is_superuser            = models.BooleanField(default=False)
-    first_name              = models.CharField(max_length=150)
-    last_name               = models.CharField(max_length=150)
-    url                     = models.CharField(max_length=255)
+
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'url']
