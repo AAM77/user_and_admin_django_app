@@ -23,7 +23,7 @@ def registration_view(request):
             user = authenticate(email=email, password=raw_password)
 
             login(request, user)
-            return redirect('')
+            return render(request, 'users/user_home.html', context)
         else:
             context['registration_form'] = form
     else:
