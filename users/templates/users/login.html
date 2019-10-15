@@ -1,28 +1,27 @@
 {% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <h1>Log In</h1>
 
-    <form method='POST'>
-        {% csrf_token %}
-        {% for field in login_form %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                {{ login_form | crispy }}
+            </fieldset>
+
             <div class="form-group">
-                <label>{{ field.label_tag }}</label>
-                <br />
-                {{ field }}
-
-                {% if field.help_text %}
-                    <small id="emailHelp" class="form-text text-muted">{{ field.help_text }}</small>
-                {% endif %}
-
-                {% if login_form.non_field_errors %}
-                        <div style="color:red";>
-                            <p>{{login_form.non_field_errors}}</p>
-                        </div>
-                {% endif %}
+                <button type="submit" class="btn btn-primary">Log In</button>
             </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">Log In</button>
-    </form>
+        </form>
+
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Don't Have An Account? <a class="ml-2" href="{% url 'registration' %}">Register</a>
+            </small>
+        </div>
+    </div>
 
 {% endblock content %}
