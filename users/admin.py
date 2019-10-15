@@ -12,6 +12,12 @@ class MyUserAdmin(UserAdmin):
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('first_name', 'last_name', 'email', 'password1', 'password2', 'url'),
+        }),
+    )
 
 
 admin.site.register(MyUser, MyUserAdmin)
