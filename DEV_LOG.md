@@ -16,25 +16,23 @@
             [x] Password
             [x] URL - personal website/portfolio
                 [] Validate URL format   --- ( http://xxx )
-[] Create routes
+[x] Create routes
     [x] home
     [x] registration page
     [x] logout
 
-[] Create views
+[x] Create views
     [x] home
     [x] register
-    [] login
+    [x] login
     [x] logout
 
     [x]  SESSION
         [x] Create - login
         [x] Delete/Destroy - logout
 
-    [] USER
+    [x] USER
         [x] New/    Create
-        [] Edit/   Update
-        [] Delete/ Destroy
 
 [x] Create Migrations
 [x] Migrate
@@ -47,12 +45,12 @@
 
 ```
 [x] Create a layout-template that accepts partials/other html templates via something like yield
-[] Create a navbar inside this template with the following stubs:
-        [] (a) Register        ---- display conditionally
-        [] (b) Log In          ---- display conditionally
-        [] (c) Sign Out        ---- display conditionally
+[x] Create a navbar inside this template with the following stubs:
+        [x] (a) Register        ---- display conditionally
+        [x] (b) Log In          ---- display conditionally
+        [x] (c) Sign Out        ---- display conditionally
 
-[] Create a universal landing page with a welcome message --- ((( is this even possible in Django? )))
+[x] Create a universal landing page with a welcome message
 [] Create a registration page
         [x] Create a Form
         [x] Make all fields required
@@ -71,17 +69,16 @@
             [] Password
 
 
-[] Create a user-landing page (for log in)
-        [] Display a Welcome Message
-            [] Include first name
-            [] Include last name
+[x] Create a user-landing page (for log in)
+        [x] Display a Welcome Message
+            [x] Include first name
+            [x] Include last name
 
-[] LOG OUT should trigger confirmation pop up --- OPTIONAL
 [x] Create a confirmation page that logging out redirects to (a page users see when they successfully log out)
         [x] Display a confirmation message
-        [] Provide an additional link to log in
+        [x] Provide an additional link to log in
 
-[] Create a page/UI for an admin-type super-user
+[x] Create a page/UI for an admin-type super-user
     [x] Manage Users
         [x] can add
         [x] can edit
