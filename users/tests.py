@@ -17,7 +17,6 @@ class UsersManagersTests(TestCase):
         self.assertEqual(user.first_name, 'Zulk')
         self.assertEqual(user.last_name, 'Ernan')
         self.assertEqual(user.email, 'new_user@info.com')
-        self.assertEqual(user.password, 'new_user123')
         self.assertEqual(user.url, 'https://www.myportfolio.com')
         self.assertTrue(user.is_active)
         self.assertFalse(user.is_admin)
@@ -34,4 +33,12 @@ class UsersManagersTests(TestCase):
         with self.assertRaises(TypeError):
             User.objects.create_user(email='')
         with self.assertRaises(ValueError):
-            User.objects.create_user(email='', password='new123')
+            User.objects.create_user(first_name='', last_name='', email='', password='new123', url='')
+        with self.assertRaises(ValueError):
+            User.objects.create_user(first_name='nunu1', last_name='nana', email='nunu1@info.com', password='new123', url='')
+        with self.assertRaises(ValueError):
+            User.objects.create_user(first_name='nunu1', last_name='nana', email='', password='new123', url='http://nunu1.com')
+        with self.assertRaises(ValueError):
+            User.objects.create_user(first_name='nunu1', last_name='', email='nunu1@info.com', password='new123', url='http://nunu1.com')
+        with self.assertRaises(ValueError):
+            User.objects.create_user(first_name='', last_name='nana', email='nunu1@info.com', password='new123', url='http://nunu1.com')
