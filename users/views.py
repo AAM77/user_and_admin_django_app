@@ -104,13 +104,20 @@ def user_list_view(request):
     }
     return render(request, 'users/list.html', context)
 
-class UserListView(LoginRequiredMixin, ListView):
+class UserListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = MyUser
-    template_name = 'users/list.html'
     context_object_name = 'users'
     ordering = ['first_name']
     login_url = 'login'
     redirect_field_name = 'redirect_to'
+
+    def test_func(self):
+        if self.request.user.is_admin:
+            return True
+        return False
+
+    def handle_no_permission(self):
+        return redirect('user_home')
 
 
 class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
@@ -122,6 +129,9 @@ class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
         if self.request.user.is_admin:
             return True
         return False
+
+    def handle_no_permission(self):
+        return redirect('user_home')
 
 
 
@@ -136,6 +146,9 @@ class UserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
             return True
         return False
 
+    def handle_no_permission(self):
+        return redirect('user_home')
+
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = MyUser
     fields = ['first_name', 'last_name', 'email', 'password', 'url']
@@ -147,6 +160,9 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+    def handle_no_permission(self):
+        return redirect('user_home')
+
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = MyUser
     success_url = '/custom-admin/users'
@@ -157,3 +173,6 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user.is_admin:
             return True
         return False
+
+    def handle_no_permission(self):
+        return redirect('user_home')
