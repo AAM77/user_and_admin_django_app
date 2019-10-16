@@ -3,7 +3,8 @@ from .views import (
     UserListView,
     UserDetailView,
     UserCreateView,
-    UserUpdateView
+    UserUpdateView,
+    UserDeleteView
 )
 from . import views
 
@@ -12,4 +13,7 @@ urlpatterns = [
     path('user/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
     path('new/', UserCreateView.as_view(), name='user-create'),
     path('user/<int:pk>/update/', UserUpdateView.as_view(), name='user-update'),
+    path('user/<int:pk>/delete/', UserDeleteView.as_view(), name='user-delete'),
+
+
 ]
