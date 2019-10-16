@@ -1,3 +1,4 @@
+import re
 from django import forms
 from users.models import MyUser
 from django.contrib.auth.forms import UserCreationForm
@@ -20,7 +21,7 @@ class RegistrationForm(UserCreationForm):
     #####################################
     # Custom validation of email format #
     #####################################
-    # Note: This is unnecessary
+    # Note: This is most likely unnecessary since the built in validation already does this
     def clean_email(self, *args, **kwargs):
         email = self.cleaned_data.get('email')
         if '@' not in email:
@@ -34,16 +35,24 @@ class RegistrationForm(UserCreationForm):
     ###################################
     # Custom validation of url format #
     ###################################
+
     def clean_url(self, *args, **kwargs):
         url = self.cleaned_data.get('url')
         protocols = ['http://', 'https://']
         domain_names = ['.com', '.net', '.org']
 
+        # check url for one of the protocols in the protols array
         if all(protocol not in url for protocol in protocols):
             raise forms.ValidationError("This is not a valid url. Must include http:// or https://")
 
+        # check url for one of the domain names in the domain_names array
         if all(domain_name not in url for domain_name in domain_names):
             raise forms.ValidationError("This is not a valid url. Domain name must be .com, .net, or .org")
+
+        # check url for text between :// and .com, .net, or .org
+        if (re.search('(?<=://)(.*)(?=.com|.net|.org)', url)[0] == ''):
+            raise forms.ValidationError("This is not a valid url. You must include text between http:// and .com, .net, or .org")
+
         return url
 
 
