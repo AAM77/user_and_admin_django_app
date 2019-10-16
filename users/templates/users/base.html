@@ -34,7 +34,8 @@
                         <div class="navbar-nav mr-auto">
                             <a class="nav-item nav-link" href="{% url 'user_home' %}">My Homepage</a>
                             {% if request.user.is_admin %}
-                            <a class="nav-item nav-link" href="{% url 'user-list' %}">Custom Admin Page</a>
+                            <a class="nav-item nav-link" href="{% url 'user-list' %}">Custom Admin: All Users</a>
+                            <a class="nav-item nav-link" href="{% url 'user-create' %}">Custom Admin: Create New User</a>
                             {% endif %}
                         </div>
                         <!-- Navbar Right Side -->
