@@ -147,7 +147,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
-class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = MyUser
     login_url = 'login'
     redirect_field_name = 'redirect_to'
