@@ -56,7 +56,10 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return render(request, 'users/user_home.html', context)
+                if user.is_admin:
+                    return redirect('admin:index')
+                else:
+                    return render(request, 'users/user_home.html', context)
 
     else:
         form = MyUserAuthenticationForm()
