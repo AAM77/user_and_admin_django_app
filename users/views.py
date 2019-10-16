@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
+
 from users.forms import RegistrationForm, MyUserAuthenticationForm
+
 
 
 #######################
@@ -13,15 +16,9 @@ def home_view(request):
 ##################################
 # RENDER USER HOME PAGE ON LOGIN #
 ##################################
+@login_required(login_url='login')
 def user_home_view(request):
     return render(request, 'users/user_home.html')
-
-
-###################################
-# RENDER LOGOUT CONFIRMATION PAGE #
-###################################
-def logout_confirmation_view(request):
-    return render(request, 'users/logout.html')
 
 
 #########################################################################
@@ -83,9 +80,10 @@ def login_view(request):
     return render(request, 'users/login.html', context)
 
 
-##################
-# HANDLE LOGOUT #
-#################
+####################################################
+# HANDLE LOGOUT & DISPLAY LOGOUT CONFIRMATION PAGE #
+####################################################
+@login_required(login_url='login')
 def logout_view(request):
     logout(request)
-    return redirect('logout_confirmation')
+    return render(request, 'users/logout.html')
