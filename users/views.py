@@ -46,7 +46,7 @@ def registration_view(request):
             user = authenticate(email=email, password=raw_password)
 
             login(request, user)
-            return redirect('user_home')
+            return redirect('user-home')
             # return render(request, 'users/user_home.html', context)
         else:
             context['registration_form'] = form
@@ -80,7 +80,7 @@ def login_view(request):
                 if user.is_staff and user.is_admin:
                     return redirect('admin:index')
                 else:
-                    return redirect('user_home')
+                    return redirect('user-home')
 
     else:
         form = MyUserAuthenticationForm()
@@ -117,7 +117,7 @@ class UserListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return False
 
     def handle_no_permission(self):
-        return redirect('user_home')
+        return redirect('user-home')
 
 
 class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
@@ -131,7 +131,7 @@ class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
         return False
 
     def handle_no_permission(self):
-        return redirect('user_home')
+        return redirect('user-home')
 
 
 
@@ -148,7 +148,7 @@ class UserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return False
 
     def handle_no_permission(self):
-        return redirect('user_home')
+        return redirect('user-home')
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = MyUser
@@ -164,7 +164,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
     def handle_no_permission(self):
-        return redirect('user_home')
+        return redirect('user-home')
 
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = MyUser
@@ -178,4 +178,4 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
     def handle_no_permission(self):
-        return redirect('user_home')
+        return redirect('user-home')
