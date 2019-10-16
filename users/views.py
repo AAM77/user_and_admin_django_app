@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
-from django.views.generic import ListView, DetailView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView
+)
 
 from .models import MyUser
 from users.forms import RegistrationForm, MyUserAuthenticationForm
@@ -105,3 +109,8 @@ class UserListView(ListView):
 
 class UserDetailView(DetailView):
     model = MyUser
+
+
+class UserCreateView(CreateView):
+    model = MyUser
+    fields = ['first_name', 'last_name', 'email', 'password1', 'password2', 'url']
