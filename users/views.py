@@ -7,6 +7,7 @@ from django.views.generic import (
     DetailView,
     CreateView,
     UpdateView,
+    DeleteView
 )
 
 from .models import MyUser
@@ -138,6 +139,16 @@ class UserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = MyUser
     fields = ['first_name', 'last_name', 'email', 'password', 'url']
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
+    def test_func(self):
+        if self.request.user.is_admin:
+            return True
+        return False
+
+class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = MyUser
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
