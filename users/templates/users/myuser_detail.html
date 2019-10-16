@@ -13,6 +13,11 @@
         </div>
         <p>{{ object.email }}</p>
         </div>
+
+        <div>
+            <button class="btn btn-primary" onclick="window.location.href = '{% url 'user-update' user.id %}'">Edit</button>
+            <button class="btn btn-danger" onclick="window.location.href = '{% url 'user-delete' user.id %}'">Delete</button>
+        </div>
     </article>
 
 {% endblock content %}
