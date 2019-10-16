@@ -5,7 +5,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.views.generic import (
     ListView,
     DetailView,
-    CreateView
+    CreateView,
+    UpdateView
 )
 
 from .models import MyUser
@@ -119,6 +120,12 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
 
 class UserCreateView(LoginRequiredMixin, CreateView):
+    model = MyUser
+    fields = ['first_name', 'last_name', 'email', 'password', 'url']
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
+class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = MyUser
     fields = ['first_name', 'last_name', 'email', 'password', 'url']
     login_url = 'login'
