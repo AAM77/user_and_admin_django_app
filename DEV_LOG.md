@@ -10,12 +10,12 @@
             [x] First name
             [x] Last name
             [x] Email
-                [] Validate Email format --- ( xxx@xxx.com )
+                [x] Validate Email format --- ( xxx@xxx.com )
                 [x] Email should be unique
-                [] Email should be case insensitive
+                [x] Email should be case insensitive
             [x] Password
             [x] URL - personal website/portfolio
-                [] Validate URL format   --- ( http://xxx )
+                [x] Validate URL format   --- ( http://xxx )
 [x] Create routes
     [x] home
     [x] registration page
@@ -24,6 +24,7 @@
 [x] Create views
     [x] home
     [x] register
+    [x] routes to admin page if an admin
     [x] login
     [x] logout
 
@@ -51,22 +52,21 @@
         [x] (c) Sign Out        ---- display conditionally
 
 [x] Create a universal landing page with a welcome message
-[] Create a registration page
+[x] Create a registration page
         [x] Create a Form
         [x] Make all fields required
             [x] First name
             [x] Last name
             [x] Email
-                [] Validate Email format --- ( xxx@xxx.com )
+                [x] Validate Email format --- ( xxx@xxx.com )
             [x] Password
             [x] URL - personal website/portfolio
-                [] Validate URL format   --- ( http://xxx )
+                [x] Validate URL format   --- ( http://xxx )
 
-[] Create a Log In Page
-        [] Create a log in Form
-            [] Email
-                [] Validate Email format --- ( xxx@xxx.com )
-            [] Password
+[x] Create a Log In Page
+        [x] Create a log in Form
+            [x] Email
+            [x] Password
 
 
 [x] Create a user-landing page (for log in)
