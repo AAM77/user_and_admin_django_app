@@ -3,18 +3,35 @@ from django.contrib.auth import login, authenticate, logout
 from users.forms import RegistrationForm, MyUserAuthenticationForm
 
 
+#######################
+# RENDER LANDING PAGE #
+#######################
 def home_view(request):
     return render(request, 'users/home.html')
 
+
+##################################
+# RENDER USER HOME PAGE ON LOGIN #
+##################################
+def user_home_view(request):
+    return render(request, 'users/user_home.html')
+
+
+###################################
+# RENDER LOGOUT CONFIRMATION PAGE #
+###################################
+def logout_confirmation_view(request):
+    return render(request, 'users/logout.html')
+
+
+#########################################################################
+# REGISTRATION: Handle Validation of Registration form & Authentication #
+#########################################################################
 def registration_view(request):
     context = {}
     if request.POST:
         form = RegistrationForm(request.POST)
 
-        # if all fields meet criteria save form & authenticate the user
-        # login user & redirect to the home page (for now)
-        # otherwise, fill in the form with the values & reload the page
-        # display any errors in the template
         if form.is_valid():
             form.save()
 
@@ -23,7 +40,8 @@ def registration_view(request):
             user = authenticate(email=email, password=raw_password)
 
             login(request, user)
-            return render(request, 'users/user_home.html', context)
+            return redirect('user_home')
+            # return render(request, 'users/user_home.html', context)
         else:
             context['registration_form'] = form
     else:
@@ -33,12 +51,9 @@ def registration_view(request):
     return render(request, 'users/register.html', context)
 
 
-
-# if the user is already authenticate, redirect to the user's home page ('home' for now)
-# otherwise, if there's a POST request, get the form data, and check if valid
-    # if valid, grab the email and password from the request & authenticate the user
-        # if the user is authenticated, log in the user and render the user log in page
-# else, fill out the form with with the passed in info & raise errors in the template
+###########################################################
+# LOGIN: Handle Validation of Login form & Authentication #
+###########################################################
 def login_view(request):
     context = {}
 
@@ -59,7 +74,7 @@ def login_view(request):
                 if user.is_admin:
                     return redirect('admin:index')
                 else:
-                    return render(request, 'users/user_home.html', context)
+                    return redirect('user_home')
 
     else:
         form = MyUserAuthenticationForm()
@@ -68,6 +83,9 @@ def login_view(request):
     return render(request, 'users/login.html', context)
 
 
+##################
+# HANDLE LOGOUT #
+#################
 def logout_view(request):
     logout(request)
-    return render(request, 'users/logout.html')
+    return redirect('logout_confirmation')
