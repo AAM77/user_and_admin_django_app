@@ -113,4 +113,4 @@ class UserDetailView(DetailView):
 
 class UserCreateView(CreateView):
     model = MyUser
-    fields = ['first_name', 'last_name', 'email', 'password1', 'password2', 'url']
+    fields = ['first_name', 'last_name', 'email', 'password', 'url']
