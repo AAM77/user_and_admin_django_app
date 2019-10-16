@@ -1,0 +1,18 @@
+{% extends 'users/base.html' %}
+
+
+{% block content %}
+    <h1>Welcome, {{ request.user.first_name }}  {{ request.user.last_name }}!</h1>
+    <h3> THIS IS THE LIST TEMPLATE </h3>
+
+    {% for user in users %}
+        <article class="content-section">
+          <div>
+            <div>
+              <a class="mr-2" href="#">{{ user.first_name }} {{ user.last_name }}</a>
+            </div>
+            <p>{{ user.email }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
