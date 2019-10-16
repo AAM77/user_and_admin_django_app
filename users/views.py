@@ -137,7 +137,8 @@ class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 class UserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = MyUser
-    fields = ['first_name', 'last_name', 'email', 'password', 'url']
+    form_class = RegistrationForm
+
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
@@ -151,7 +152,9 @@ class UserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = MyUser
-    fields = ['first_name', 'last_name', 'email', 'password', 'url']
+    form_class = RegistrationForm
+
+
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
