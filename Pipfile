@@ -8,6 +8,9 @@ pylint = "*"
 
 [packages]
 django = "==2.2.6"
+django-crispy-forms = "*"
+mysqlclient = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.7"
