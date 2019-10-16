@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import (
     ListView,
@@ -101,16 +102,24 @@ def user_list_view(request):
     }
     return render(request, 'users/list.html', context)
 
-class UserListView(ListView):
+class UserListView(LoginRequiredMixin, ListView):
     model = MyUser
     template_name = 'users/list.html'
     context_object_name = 'users'
     ordering = ['first_name']
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
 
-class UserDetailView(DetailView):
+
+class UserDetailView(LoginRequiredMixin, DetailView):
     model = MyUser
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
 
 
-class UserCreateView(CreateView):
+
+class UserCreateView(LoginRequiredMixin, CreateView):
     model = MyUser
     fields = ['first_name', 'last_name', 'email', 'password', 'url']
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
