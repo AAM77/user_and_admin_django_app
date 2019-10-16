@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
+from django.views.generic import ListView
 
+from .models import MyUser
 from users.forms import RegistrationForm, MyUserAuthenticationForm
 
 
@@ -68,7 +70,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                if user.is_admin:
+                if user.is_staff and user.is_admin:
                     return redirect('admin:index')
                 else:
                     return redirect('user_home')
@@ -87,3 +89,16 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return render(request, 'users/logout.html')
+
+
+def user_list_view(request):
+    context = {
+        'users': MyUser.objects.all()
+    }
+    return render(request, 'users/list.html', context)
+
+class UserListView(ListView):
+    model = MyUser
+    template_name = 'users/list.html'
+    context_object_name = 'users'
+    ordering = ['first_name']
