@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
-    UpdateView
+    UpdateView,
 )
 
 from .models import MyUser
@@ -112,21 +112,36 @@ class UserListView(LoginRequiredMixin, ListView):
     redirect_field_name = 'redirect_to'
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = MyUser
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
+    def test_func(self):
+        if self.request.user.is_admin:
+            return True
+        return False
 
 
-class UserCreateView(LoginRequiredMixin, CreateView):
+
+class UserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = MyUser
     fields = ['first_name', 'last_name', 'email', 'password', 'url']
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
-class UserUpdateView(LoginRequiredMixin, UpdateView):
+    def test_func(self):
+        if self.request.user.is_admin:
+            return True
+        return False
+
+class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = MyUser
     fields = ['first_name', 'last_name', 'email', 'password', 'url']
     login_url = 'login'
     redirect_field_name = 'redirect_to'
+
+    def test_func(self):
+        if self.request.user.is_admin:
+            return True
+        return False
