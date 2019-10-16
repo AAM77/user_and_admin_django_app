@@ -149,6 +149,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = MyUser
+    success_url = '/custom-admin/users'
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
