@@ -4,6 +4,8 @@ from django.contrib.auth.models import (
     BaseUserManager
     )
 
+from django.urls import reverse
+
 
 class MyUserManager(BaseUserManager):
 
@@ -75,3 +77,6 @@ class MyUser(AbstractBaseUser):
 
     def has_module_perms(self, app_Label):
         return True
+
+    def get_absolute_url(self):
+        return reverse('user-list')
