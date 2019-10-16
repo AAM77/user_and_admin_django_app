@@ -2,17 +2,27 @@
 
 
 {% block content %}
-    <h1>Welcome, {{ request.user.first_name }}  {{ request.user.last_name }}!</h1>
-    <h3> THIS IS THE LIST TEMPLATE </h3>
+    <h1>Welcome to the ADMIN PAGE</h1>
+    <h2>Current Admin: {{ request.user.first_name }}  {{ request.user.last_name }}</h2>
+    <br />
+    <br />
+    <h3>Users</h3>
+    <br />
 
     {% for user in users %}
-        <article class="content-section">
-          <div>
+        {% if not user.is_admin %}
+          <article class="content-section">
             <div>
-              <a class="mr-2" href="{% url 'user-detail' user.id %}">{{ user.first_name }} {{ user.last_name }}</a>
+              <div>
+                <a class="mr-2" href="{% url 'user-detail' user.id %}">{{ user.first_name }} {{ user.last_name }}</a>
+              </div>
+              <p>{{ user.email }}</p>
             </div>
-            <p>{{ user.email }}</p>
-          </div>
-        </article>
+            <div>
+              <button class="btn btn-primary" onclick="window.location.href = '{% url 'user-update' user.id %}'">Edit</button>
+              <button class="btn btn-danger" onclick="window.location.href = '{% url 'user-delete' user.id %}'">Delete</button>
+            </div>
+          </article>
+        {% endif %}
     {% endfor %}
 {% endblock content %}
