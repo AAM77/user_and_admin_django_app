@@ -5,12 +5,31 @@ from django.contrib.auth import authenticate
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=255, help_text="Required. Add a valid email address")
+    email   = forms.EmailField(max_length=255, help_text="Required. Add a valid email address")
+    url     = forms.CharField(max_length=255)
 
     class Meta:
         model = MyUser
         fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'url')
 
+
+    def clean_email(self, *args, **kwargs):
+        email = self.cleaned_data.get('email')
+        if not '@' in email and not '.com' in email:
+            raise forms.ValidationError("This is not a valid email")
+        return email
+
+    def clean_url(self, *args, **kwargs):
+        url = self.cleaned_data.get('url')
+        protocols = ['http://', 'https://']
+        domain_names = ['.com', '.net', '.org']
+
+        if all(protocol not in url for protocol in protocols):
+            raise forms.ValidationError("This is not a valid url. Must include http:// or https://")
+
+        if all(domain_name not in url for domain_name in domain_names):
+            raise forms.ValidationError("This is not a valid url. Domain name must be .com, .net, or .org")
+        return url
 
 # Create a custom form for authentication/login
 # Meta specifies user model & fields of the form
