@@ -4,6 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 
 
+
+############################
+# Custom Registration form #
+############################
 class RegistrationForm(UserCreationForm):
     email   = forms.EmailField(max_length=255, help_text="Required. Add a valid email address")
     url     = forms.CharField(max_length=255)
@@ -13,12 +17,23 @@ class RegistrationForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'url')
 
 
+    #####################################
+    # Custom validation of email format #
+    #####################################
+    # Note: This is unnecessary
     def clean_email(self, *args, **kwargs):
         email = self.cleaned_data.get('email')
-        if not '@' in email and not '.com' in email:
-            raise forms.ValidationError("This is not a valid email")
+        if '@' not in email:
+            raise forms.ValidationError("This is not a valid email. Format must be xx@xx.com")
+
+        if '.com' not in email:
+            raise forms.ValidationError("This is not a valid email. Format must be xx@xx.com")
+
         return email
 
+    ###################################
+    # Custom validation of url format #
+    ###################################
     def clean_url(self, *args, **kwargs):
         url = self.cleaned_data.get('url')
         protocols = ['http://', 'https://']
@@ -31,9 +46,11 @@ class RegistrationForm(UserCreationForm):
             raise forms.ValidationError("This is not a valid url. Domain name must be .com, .net, or .org")
         return url
 
-# Create a custom form for authentication/login
-# Meta specifies user model & fields of the form
-# clean displays validation error if the fields are invalid
+
+
+#########################################
+# Custom validations for authentication #
+#########################################
 class MyUserAuthenticationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     class Meta:
@@ -41,8 +58,8 @@ class MyUserAuthenticationForm(forms.ModelForm):
         fields = ('email', 'password')
 
     def clean(self):
-        email = self.cleaned_data['email']
-        password = self.cleaned_data['password']
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
 
         if not authenticate(email=email, password=password):
-            raise forms.ValidationError("Invalid login")
+            raise forms.ValidationError("Invalid email or password. Please double check and try again.")
